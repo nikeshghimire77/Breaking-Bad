@@ -3,6 +3,8 @@ import './App.css';
 
 import Header from './components/UI/Header';
 import CharacterGrid from './components/characters/CharacterGrid';
+import Search from './components/UI/Search';
+
 import { fetchItems } from './api/';
 
 const App = () => {
@@ -23,6 +25,7 @@ const App = () => {
   return (
     <div className='container'>
       <Header />
+      <Search />
       <CharacterGrid isLoading={isLoading} items={items} />
     </div>
   );

@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
+import Header from './components/UI/Header';
+import CharacterGrid from './components/characters/CharacterGrid';
+import { fetchItems } from './api/';
+
+const App = () => {
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      const data = await fetchItems();
+      // console.log(data.data);
+      setItems(data.data);
+      setIsLoading(false);
+    };
+
+    fetchAPI();
+  }, []);
+
   return (
-    <div className='App'>
-      <h1>REACT</h1>
+    <div className='container'>
+      <Header />
+      <CharacterGrid isLoading={isLoading} items={items} />
     </div>
   );
-}
+};
 
 export default App;
